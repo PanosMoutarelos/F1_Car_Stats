@@ -8,6 +8,7 @@ namespace F1_Car_Stats
 {
     internal class Stats
     {
+        // Private fields to store car data
         private string _teamName = "";
         private int _horsePower = 0;
         private double _weight = 0;
@@ -15,7 +16,10 @@ namespace F1_Car_Stats
         private string _constructor = "";
         private string _engineType = "";
 
+        // Properties to access and validate fields
         public string TeamName { get => _teamName; set => _teamName = value; }
+
+        // HorsePower property with validation for positive values
         public int HorsePower
         {
             get => _horsePower;
@@ -36,6 +40,7 @@ namespace F1_Car_Stats
             }
         }
 
+        // Weight property with validation for positive values
         public double Weight
         {
             get => _weight;
@@ -57,10 +62,12 @@ namespace F1_Car_Stats
             }
         }
 
+        // Simple getters/setters for other properties
         public int Year { get => _year; set => _year = value; }
         public string Constructor { get => _constructor; set => _constructor = value; }
         public string EngineType { get => _engineType; set => _engineType = value; }
 
+        // Constructor: initialize all fields with user-provided values
         public Stats(string teamName, int horsePower, double weight, int year, string constructor, string engineType)
         {
             TeamName = teamName;
@@ -71,31 +78,34 @@ namespace F1_Car_Stats
             EngineType = engineType;
         }
 
+        // Method to calculate the Power-to-Weight ratio
         public double PowerToWeight()
         {
             double PTW = HorsePower / Weight;
             return PTW;
         }
 
-
+        // Method to compare this car's Power-to-Weight ratio with another car
         public void ComparePowerToWeight(Stats otherCar)
         {
 
             if (this.PowerToWeight() > otherCar.PowerToWeight())
 
             {
-                Console.WriteLine("\n" + this.TeamName + " has bigger power to weight ratio: " + this.PowerToWeight().ToString("F3"));
+                Console.WriteLine("\n" + this.TeamName + " has bigger power to weight ratio: " + this.PowerToWeight().ToString("F3") + " hP/kg");
 
             }
             else if (this.PowerToWeight() < otherCar.PowerToWeight())
             {
-                Console.WriteLine("\n" + otherCar.TeamName + " has bigger power to weight ratio: " + otherCar.PowerToWeight().ToString("F3"));
+                Console.WriteLine("\n" + otherCar.TeamName + " has bigger power to weight ratio: " + otherCar.PowerToWeight().ToString("F3")+" hP/kg");
             }
             else if ((this.PowerToWeight() == otherCar.PowerToWeight()))
             {
                 Console.WriteLine("\nBoth cars have the same power to weight ratio");
             }
         }
+
+        // Method to print all stats of the car
         public void StatsSummary()
         {
             Console.WriteLine("Team Name: " + this.TeamName);
